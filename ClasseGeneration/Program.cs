@@ -1,10 +1,9 @@
 ﻿int numeroPartecipantiAlMomento = 0;
 int maxPartecipantiAlCorso = 10;
 string[] nomiPartecipantiAlCorso = new string[maxPartecipantiAlCorso];
-/*
 string[] cognomiPartecipantiAlCorso = new string[maxPartecipantiAlCorso];
 int[] etaPartecipantiAlCorso = new int[maxPartecipantiAlCorso];
-*/
+
 
 // ---------- Funzioni ----------
 
@@ -28,11 +27,13 @@ void StampaInfoAlunni(string[] array)
 }
 */
 
-void aggiungiAlunno(string nome)
+void aggiungiAlunno(string nome, string cognome, int eta)
 {
     if (numeroPartecipantiAlMomento < maxPartecipantiAlCorso)
     {
         nomiPartecipantiAlCorso[numeroPartecipantiAlMomento] = nome;
+        cognomiPartecipantiAlCorso[numeroPartecipantiAlMomento] = cognome;
+        etaPartecipantiAlCorso[numeroPartecipantiAlMomento] = eta;
         numeroPartecipantiAlMomento++;
     }
     else
@@ -47,6 +48,8 @@ void rimuoviAlunno()
     {
         numeroPartecipantiAlMomento--;
         nomiPartecipantiAlCorso[numeroPartecipantiAlMomento] = "";
+        cognomiPartecipantiAlCorso[numeroPartecipantiAlMomento] = "";
+       
     } else
     {
         Console.WriteLine("Mi dispiace ma al momento non abbiamo nessun partecipante iscritto al corso");
@@ -68,7 +71,12 @@ while (true)
         case "si":
         Console.Write("Inserisci il tuo nome: ");
         string rispostaNome = Console.ReadLine();
-        aggiungiAlunno(rispostaNome);
+            Console.Write("Inserisci il tuo cognome: ");
+            string rispostaCognome = Console.ReadLine();
+            Console.Write("Inserisci la tua età: ");
+            string rispostaEta = Console.ReadLine();
+            int rispostaEtaConvertita = int.Parse(rispostaEta);
+            aggiungiAlunno(rispostaNome, rispostaCognome, rispostaEtaConvertita);
         break;
 
         case "no":
@@ -89,14 +97,20 @@ while (true)
     
         default:
     
-        Console.Write("Mi dispiace ma la tua risposta non può essere interpretata");
+        Console.WriteLine("Mi dispiace ma la tua risposta non può essere interpretata.");
         break;
     }
 
     Console.WriteLine($"Al momento il numero di partecipanti al corso è {numeroPartecipantiAlMomento}");
     for(int i = 0; i < nomiPartecipantiAlCorso.Length; i++) 
     {
-    Console.WriteLine(nomiPartecipantiAlCorso[i]);
+        Console.Write(nomiPartecipantiAlCorso[i]);
+        Console.WriteLine();
+        Console.Write(cognomiPartecipantiAlCorso[i]);
+        Console.WriteLine();
+        Console.Write(etaPartecipantiAlCorso[i]);
+
+
     }
 
 
