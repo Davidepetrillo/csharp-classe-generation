@@ -102,16 +102,32 @@ while (true)
     }
 
     Console.WriteLine($"Al momento il numero di partecipanti al corso è {numeroPartecipantiAlMomento}");
-    for(int i = 0; i < nomiPartecipantiAlCorso.Length; i++) 
+    Console.Write($"I nomi dei partecipanti al momento sono: ");
+    Console.WriteLine();
+
+    for (int i = 0; i < nomiPartecipantiAlCorso.Length; i++)
     {
-        Console.Write(nomiPartecipantiAlCorso[i]);
-        Console.WriteLine();
-        Console.Write(cognomiPartecipantiAlCorso[i]);
-        Console.WriteLine();
-        Console.Write(etaPartecipantiAlCorso[i]);
-
-
+        Console.Write($"{nomiPartecipantiAlCorso[i]} - ");  
     }
+    Console.WriteLine();
+    Console.Write("I cognomi dei partecipanti al momento sono: ");
+    Console.WriteLine();
+
+    for (int i = 0; i < nomiPartecipantiAlCorso.Length; i++)
+
+    {
+        Console.Write($"{cognomiPartecipantiAlCorso[i]} - ");
+    }
+    Console.WriteLine();
+    Console.Write("L'età dei partecipanti al momento è: ");
+    Console.WriteLine();
+
+    for (int i = 0; i < etaPartecipantiAlCorso.Length; i++)
+    {
+        Console.Write($"{etaPartecipantiAlCorso[i]} - ");
+    }
+    Console.WriteLine();
+
 
 
 }
