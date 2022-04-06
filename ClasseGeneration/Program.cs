@@ -4,7 +4,6 @@ string[] nomiPartecipantiAlCorso = new string[maxPartecipantiAlCorso];
 string[] cognomiPartecipantiAlCorso = new string[maxPartecipantiAlCorso];
 int[] etaPartecipantiAlCorso = new int[maxPartecipantiAlCorso];
 
-
 // ---------- Funzioni ----------
 
 /*
@@ -44,16 +43,35 @@ void aggiungiAlunno(string nome, string cognome, int eta)
 
 void rimuoviAlunno()
 {
-    if(numeroPartecipantiAlMomento > 0)
+    if (numeroPartecipantiAlMomento > 0)
     {
         numeroPartecipantiAlMomento--;
         nomiPartecipantiAlCorso[numeroPartecipantiAlMomento] = "";
         cognomiPartecipantiAlCorso[numeroPartecipantiAlMomento] = "";
-       
-    } else
+
+    }
+    else
     {
         Console.WriteLine("Mi dispiace ma al momento non abbiamo nessun partecipante iscritto al corso");
     }
+}
+
+
+int SommaEtaPartecipanti(int[] array)
+{
+    int somma = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        somma = somma + array[i];
+    }
+    return somma;
+}
+
+double calcolaEtaMediaClasse(int [] array)
+{
+    int sommaEta = SommaEtaPartecipanti(array);
+    double media = (double)sommaEta / array.Length;
+    return media;
 }
 
 
@@ -63,26 +81,31 @@ void rimuoviAlunno()
 
 while (true)
 {
+    Console.WriteLine();
+    Console.WriteLine();
     Console.Write("Vuoi aggiungerti in questa classe [si/no] ? ");
     string rispostaPrimaDomanda = Console.ReadLine();
-    switch (rispostaPrimaDomanda) { 
+    Console.WriteLine();
+    Console.WriteLine();
+    switch (rispostaPrimaDomanda)
+    {
 
 
         case "si":
-        Console.Write("Inserisci il tuo nome: ");
-        string rispostaNome = Console.ReadLine();
+            Console.Write("Inserisci il tuo nome: ");
+            string rispostaNome = Console.ReadLine();
             Console.Write("Inserisci il tuo cognome: ");
             string rispostaCognome = Console.ReadLine();
             Console.Write("Inserisci la tua età: ");
             string rispostaEta = Console.ReadLine();
             int rispostaEtaConvertita = int.Parse(rispostaEta);
             aggiungiAlunno(rispostaNome, rispostaCognome, rispostaEtaConvertita);
-        break;
+            break;
 
         case "no":
 
-        Console.Write("Vuoi rimuovere il tuo identificativo da questa classe [si/no] ? ");
-        string rispostaSecondaDomanda = Console.ReadLine();
+            Console.Write("Vuoi rimuovere l'ultimo partecipante da questa classe [si/no] ? ");
+            string rispostaSecondaDomanda = Console.ReadLine();
 
             if (rispostaSecondaDomanda == "si")
             {
@@ -93,21 +116,24 @@ while (true)
                 Console.Write("Grazie per il tuo tempo");
                 break;
             }
-        break;
-    
-        default:
-    
-        Console.WriteLine("Mi dispiace ma la tua risposta non può essere interpretata.");
-        break;
-    }
+            break;
 
+        default:
+
+            Console.WriteLine("Mi dispiace ma la tua risposta non può essere interpretata.");
+            break;
+    }
+    Console.WriteLine();
+    Console.WriteLine();
     Console.WriteLine($"Al momento il numero di partecipanti al corso è {numeroPartecipantiAlMomento}");
+    Console.WriteLine();
+    Console.WriteLine();
     Console.Write($"I nomi dei partecipanti al momento sono: ");
     Console.WriteLine();
 
     for (int i = 0; i < nomiPartecipantiAlCorso.Length; i++)
     {
-        Console.Write($"{nomiPartecipantiAlCorso[i]} - ");  
+        Console.Write($"{nomiPartecipantiAlCorso[i]} - ");
     }
     Console.WriteLine();
     Console.Write("I cognomi dei partecipanti al momento sono: ");
@@ -127,7 +153,10 @@ while (true)
         Console.Write($"{etaPartecipantiAlCorso[i]} - ");
     }
     Console.WriteLine();
+    Console.WriteLine();
 
+    double etaMedia = calcolaEtaMediaClasse(etaPartecipantiAlCorso);
 
+    Console.WriteLine($"L'età media della classe in questo momento è {etaMedia}");
 
 }
